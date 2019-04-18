@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipControl : MonoBehaviour
 {
     [SerializeField]
-    float rotationSpeed = 90.0f;
+    float rotationSpeed = 180.0f;
     [SerializeField]
     Rigidbody2D rb2d;
     [SerializeField]
@@ -34,8 +34,8 @@ public class ShipControl : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
 
-            Vector2 forwardVector = new Vector2(-1,1);
-            rb2d.AddForce(forwardVector * thrust);
+            Vector2 forwardVector = new Vector2(0,1);
+            rb2d.AddRelativeForce(forwardVector * thrust * Time.deltaTime, ForceMode2D.Impulse);
         }
         
     }

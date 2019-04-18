@@ -11,10 +11,12 @@ public class ShipControl : MonoBehaviour
     [SerializeField]
     float thrust = 0.2f;
 
+    float colliderRadius;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        colliderRadius = GetComponent<CircleCollider2D>().radius;
     }
 
     // Update is called once per frame
@@ -40,16 +42,19 @@ public class ShipControl : MonoBehaviour
         
     }
 
-    
+    private void OnBecameInvisible()
+    {
+           //Find position on screen
+        if((transform.position.x + colliderRadius) > ScreenUtils.ScreenRight)
+        {
+            Debug.Log("Ship has exited screen right.");
+        }
+        else if ((transform.position.x - colliderRadius) < ScreenUtils.ScreenLeft)
+        {
+            Debug.Log("Ship has exited screen left.");
+        }
+    }
+
 
 }
 
-/*
- * // Smoothly tilts a transform towards a target rotation.
-        
-
-        // Rotate the cube by converting the angles into a quaternion.
-        Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
-
-       
-*/

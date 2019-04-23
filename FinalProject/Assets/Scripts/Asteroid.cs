@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    
     /*  
     Include a moving asteroid in your game that starts moving in a random direction with one of 3 random sprites
     Screen wrap the asteroid. For example, when the asteroid leaves the bottom of the game window it should re-appear 
@@ -13,8 +14,7 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Select a random sprite
-        //Move in a random direction
+        //Move in a random direction, based on spawn location (towards camera field of view)
     }
 
     // Update is called once per frame
@@ -22,5 +22,7 @@ public class Asteroid : MonoBehaviour
     {
         
     }
+
+
 
 }

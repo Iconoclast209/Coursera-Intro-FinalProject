@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5611054209583557235}
   - component: {fileID: 5611054209583557232}
   - component: {fileID: 5611054209583557233}
-  - component: {fileID: 5611054209583557234}
   - component: {fileID: 5611054209583557237}
+  - component: {fileID: 7475125815171213604}
   m_Layer: 0
   m_Name: Asteroid-Large-Brown
   m_TagString: Untagged
@@ -94,44 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c4cf41b0bdb54408abd12896e75edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!60 &5611054209583557234
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5611054209583557246}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.01, y: 0.84}
-    newSize: {x: 1.01, y: 0.84}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.41143894, y: -0.13731033}
-      - {x: 0.44704533, y: -0.049659133}
-      - {x: 0.48568153, y: 0.014583111}
-      - {x: 0.255, y: 0.42}
-      - {x: -0.31602287, y: 0.40712106}
-      - {x: -0.35212135, y: 0.33594692}
-      - {x: -0.45026493, y: 0.09185612}
-      - {x: -0.4985609, y: -0.098484695}
-      - {x: -0.2256813, y: -0.40068173}
-      - {x: -0.15212154, y: -0.39102262}
-      - {x: 0.10534096, y: -0.29102266}
-      - {x: 0.32871246, y: -0.3217045}
-      - {x: 0.35958385, y: -0.2623862}
 --- !u!50 &5611054209583557237
 Rigidbody2D:
   serializedVersion: 4
@@ -153,3 +115,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &7475125815171213604
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611054209583557246}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.44

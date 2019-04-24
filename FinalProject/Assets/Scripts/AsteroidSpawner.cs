@@ -36,25 +36,62 @@ public class AsteroidSpawner : MonoBehaviour
         float prefabRadius = asteroidPrefabs[index].GetComponent<CircleCollider2D>().radius;
         // Select a random spawn point just outside camera window
 
-        /*
-        int quadrantToSpawnIn = Random.Range(1, 4);
-        if(quadrantToSpawnIn == 1)
-        {
-            //determine random x,y pair within quadrant 1
-        }
-        */
+        float xCoordinate = 0f; 
+        float yCoordinate = 0f;
 
-        float xCoordinate = Random.Range(ScreenUtils.ScreenLeft, ScreenUtils.ScreenRight);
-        float yCoordinate = Random.Range(ScreenUtils.ScreenBottom, ScreenUtils.ScreenTop);
+        int sectorToSpawnIn = Random.Range(1, 5);
+        Debug.Log("sectorToSpawnIn is " + sectorToSpawnIn);
+
+        if(sectorToSpawnIn == 1)
+        {
+            //determine random x,y pair within sector 1 (upper left)
+            xCoordinate = Random.Range(ScreenUtils.ScreenLeft, 0);
+            yCoordinate = ScreenUtils.ScreenTop + prefabRadius;
+        }
+        else if (sectorToSpawnIn == 2)
+        {
+            //determine random x,y pair within sector 2 (upper right)
+            xCoordinate = Random.Range(0, ScreenUtils.ScreenRight);
+            yCoordinate = ScreenUtils.ScreenTop + prefabRadius;
+        }
+        else if (sectorToSpawnIn == 3)
+        {
+            //determine random x,y pair within sector 3 (upper side right)
+            xCoordinate = ScreenUtils.ScreenRight + prefabRadius;
+            yCoordinate = Random.Range(0, ScreenUtils.ScreenTop);
+        }
+        else if (sectorToSpawnIn == 4)
+        {
+            //determine random x,y pair within sector 4 (lower side right)
+            xCoordinate = ScreenUtils.ScreenRight + prefabRadius;
+            yCoordinate = Random.Range(ScreenUtils.ScreenBottom, 0);
+        }
+
+
         Vector3 spawnPosition = new Vector3(xCoordinate, yCoordinate, 0f);
         // Create an asteroid 
         GameObject newAsteroid = Instantiate(asteroidPrefabs[index], spawnPosition, Quaternion.identity);
 
-        // Select a random velocity (towards camera window)
+        // Select a random thrust
         float thrust = Random.RandomRange(thrustMin, thrustMax);
-        newAsteroid.GetComponent<Rigidbody2D>().AddForce(Vector2.down * thrust, ForceMode2D.Impulse);
-
-
+        
+        // Select a direction towards the play space
+        if(sectorToSpawnIn == 1 || sectorToSpawnIn == 2)
+        {
+            newAsteroid.GetComponent<Rigidbody2D>().AddForce(Vector2.down * thrust, ForceMode2D.Impulse);
+        }
+        else if (sectorToSpawnIn == 3 || sectorToSpawnIn == 4)
+        {
+            newAsteroid.GetComponent<Rigidbody2D>().AddForce(Vector2.left * thrust, ForceMode2D.Impulse);
+        }
+        else if (sectorToSpawnIn == 5 || sectorToSpawnIn == 6)
+        {
+            newAsteroid.GetComponent<Rigidbody2D>().AddForce(Vector2.up * thrust, ForceMode2D.Impulse);
+        }
+        else
+        {
+            newAsteroid.GetComponent<Rigidbody2D>().AddForce(Vector2.right * thrust, ForceMode2D.Impulse);
+        }
 
 
     }

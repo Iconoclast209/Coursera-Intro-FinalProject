@@ -29,18 +29,19 @@ public class AsteroidSpawner : MonoBehaviour
 
     void SpawnAsteroid()
     {
+        #region Select an Asteroid Prefab
         // Select a random prefab
         int index = Random.Range(0, asteroidPrefabs.Length - 1);
 
         // Store the collider radius
         float prefabRadius = asteroidPrefabs[index].GetComponent<CircleCollider2D>().radius;
-        // Select a random spawn point just outside camera window
 
+
+        #endregion
+        #region Determine Spawn Location
         float xCoordinate = 0f; 
         float yCoordinate = 0f;
-
-        int sectorToSpawnIn = Random.Range(1, 5);
-        Debug.Log("sectorToSpawnIn is " + sectorToSpawnIn);
+        int sectorToSpawnIn = Random.Range(1, 9);
 
         if(sectorToSpawnIn == 1)
         {
@@ -66,8 +67,32 @@ public class AsteroidSpawner : MonoBehaviour
             xCoordinate = ScreenUtils.ScreenRight + prefabRadius;
             yCoordinate = Random.Range(ScreenUtils.ScreenBottom, 0);
         }
-
-
+        else if (sectorToSpawnIn == 5)
+        {
+            //determine random x,y pair within sector 4 (bottom right)
+            xCoordinate = Random.Range(0, ScreenUtils.ScreenRight);
+            yCoordinate = ScreenUtils.ScreenBottom - prefabRadius;
+        }
+        else if (sectorToSpawnIn == 6)
+        {
+            //determine random x,y pair within sector 4 (bottom left)
+            xCoordinate = Random.Range(ScreenUtils.ScreenLeft, 0);
+            yCoordinate = ScreenUtils.ScreenBottom - prefabRadius;
+        }
+        else if (sectorToSpawnIn == 7)
+        {
+            //determine random x,y pair within sector 4 (lower side left)
+            xCoordinate = ScreenUtils.ScreenLeft - prefabRadius;
+            yCoordinate = Random.Range(ScreenUtils.ScreenBottom, 0);
+        }
+        else
+        {
+            //determine random x,y pair within sector 4 (upper side left)
+            xCoordinate = ScreenUtils.ScreenLeft - prefabRadius;
+            yCoordinate = Random.Range(0, ScreenUtils.ScreenTop);
+        }
+        #endregion
+        #region Determine Thrust
         Vector3 spawnPosition = new Vector3(xCoordinate, yCoordinate, 0f);
         // Create an asteroid 
         GameObject newAsteroid = Instantiate(asteroidPrefabs[index], spawnPosition, Quaternion.identity);
@@ -92,7 +117,7 @@ public class AsteroidSpawner : MonoBehaviour
         {
             newAsteroid.GetComponent<Rigidbody2D>().AddForce(Vector2.right * thrust, ForceMode2D.Impulse);
         }
-
+        #endregion
 
     }
 }

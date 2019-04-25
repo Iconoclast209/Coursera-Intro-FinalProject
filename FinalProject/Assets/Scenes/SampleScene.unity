@@ -453,7 +453,7 @@ MonoBehaviour:
   asteroidPrefabs:
   - {fileID: 5611054209583557246, guid: 2590633b731498547b5c5ff5fb3ce7a3, type: 3}
   thrustMin: 1
-  thrustMax: 10
+  thrustMax: 7
 --- !u!1 &1663598031
 GameObject:
   m_ObjectHideFlags: 0

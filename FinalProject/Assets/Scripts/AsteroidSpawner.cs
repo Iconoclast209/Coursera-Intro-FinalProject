@@ -6,12 +6,16 @@ public class AsteroidSpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject[] asteroidPrefabs;
-
     [SerializeField]
     float thrustMin;
     [SerializeField]
     float thrustMax;
+    float timerMaxLength = 5f;
+    float timerMinLength = 1.5f;
+    float timeSinceLastSpawn = 0f;
+    float timer = 1f;
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,16 @@ public class AsteroidSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        timeSinceLastSpawn += Time.deltaTime;
+
+        if(timeSinceLastSpawn > timer)
+        {
+            SpawnAsteroid();
+            timer = Random.Range(timerMinLength, timerMaxLength);
+            timeSinceLastSpawn = 0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
         {
             SpawnAsteroid();
         }

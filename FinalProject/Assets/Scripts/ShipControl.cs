@@ -7,11 +7,10 @@ public class ShipControl : MonoBehaviour
     [SerializeField]
     float rotationSpeed = 180.0f;
     [SerializeField]
-    Rigidbody2D rb2d;
-    [SerializeField]
     float thrust = 0.2f;
 
     float colliderRadius;
+    Rigidbody2D rb2d;
 
     void Start()
     {
@@ -49,7 +48,6 @@ public class ShipControl : MonoBehaviour
         //Determine what edge of the screen the ship has exited
         if((newPosition.x + colliderRadius) > ScreenUtils.ScreenRight)
         {
-            Debug.Log("Ship has exited screen right.");
             newPosition.x *= -1;
             /*if(newPosition.y > ScreenUtils.ScreenTop)
             {
@@ -58,7 +56,6 @@ public class ShipControl : MonoBehaviour
         }
         else if ((newPosition.x - colliderRadius) < ScreenUtils.ScreenLeft)
         {
-            Debug.Log("Ship has exited screen left.");
             newPosition.x *= -1;
             if (newPosition.y > ScreenUtils.ScreenTop)
             {
@@ -68,20 +65,32 @@ public class ShipControl : MonoBehaviour
 
         if ((newPosition.y - colliderRadius) < ScreenUtils.ScreenBottom)
         {
-            Debug.Log("Ship has exited screen bottom.");
             newPosition.y *= -1;
         }
         else if ((newPosition.y + colliderRadius) > ScreenUtils.ScreenTop)
         {
-            Debug.Log("Ship has exited screen top.");
             newPosition.y *= -1;
         }
 
         //Adjust the ship's position to the opposite side of the screen
         transform.position = newPosition;
-
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Asteroid"))
+        {
+            Debug.Log("Ship has collided with asteroid.");
+            DestroyShip();
+        }
+    }
+
+    void DestroyShip()
+    {
+        //instantiate explosion
+        Destroy(this.gameObject);
+        //reset game
+    }
 
 }
 

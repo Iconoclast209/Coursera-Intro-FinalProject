@@ -40,41 +40,7 @@ public class ShipControl : MonoBehaviour
         
     }
 
-    private void OnBecameInvisible()
-    {
-        //Find current position
-        Vector2 newPosition = transform.position;
-        
-        //Determine what edge of the screen the ship has exited
-        if((newPosition.x + colliderRadius) > ScreenUtils.ScreenRight)
-        {
-            newPosition.x *= -1;
-            /*if(newPosition.y > ScreenUtils.ScreenTop)
-            {
-                newPosition.y = ScreenUtils.ScreenTop - 0.001f;
-            }*/
-        }
-        else if ((newPosition.x - colliderRadius) < ScreenUtils.ScreenLeft)
-        {
-            newPosition.x *= -1;
-            if (newPosition.y > ScreenUtils.ScreenTop)
-            {
-                newPosition.y = ScreenUtils.ScreenTop - 0.001f;
-            }
-        }
-
-        if ((newPosition.y - colliderRadius) < ScreenUtils.ScreenBottom)
-        {
-            newPosition.y *= -1;
-        }
-        else if ((newPosition.y + colliderRadius) > ScreenUtils.ScreenTop)
-        {
-            newPosition.y *= -1;
-        }
-
-        //Adjust the ship's position to the opposite side of the screen
-        transform.position = newPosition;
-    }
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

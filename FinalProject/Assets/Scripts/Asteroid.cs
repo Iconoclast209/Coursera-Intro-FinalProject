@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    float colliderRadius = 1;
-    /*  
-    Screen wrap the asteroid. For example, when the asteroid leaves the bottom of the game window it should re-appear 
-    at the top of the game window
-    */
+    float colliderRadius;
 
     private void Start()
     {
         colliderRadius = GetComponent<CircleCollider2D>().radius;
     }
 
+    /*
     private void OnBecameInvisible()
     {
         //Find current position
@@ -42,7 +39,7 @@ public class Asteroid : MonoBehaviour
         //Adjust the asteroids's position to the opposite side of the screen
         transform.position = newPosition;
 
-    }
+    }*/
 
 
 

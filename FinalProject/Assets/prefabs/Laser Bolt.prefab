@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8489616839629682186}
   - component: {fileID: 5173085189905106481}
   - component: {fileID: 3500882724655428364}
+  - component: {fileID: -759452354780407102}
+  - component: {fileID: -1034322235124853149}
   m_Layer: 0
   m_Name: Laser Bolt
   m_TagString: Untagged
@@ -118,3 +120,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-759452354780407102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718483161428248944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198fdb819b97511499c468089e842d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 2
+--- !u!114 &-1034322235124853149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718483161428248944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ab1dc0efb495e438c47eb5f5aefb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

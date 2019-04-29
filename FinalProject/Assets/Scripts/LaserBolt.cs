@@ -23,7 +23,7 @@ public class LaserBolt : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Asteroid"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Asteroid>().DamageAsteroid();
         }
     }
 }

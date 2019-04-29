@@ -9,6 +9,7 @@ public class ShipControl : MonoBehaviour
     [SerializeField]
     float thrust = 0.2f;
 
+    HUD hud;
     float colliderRadius;
     Rigidbody2D rb2d;
 
@@ -54,6 +55,8 @@ public class ShipControl : MonoBehaviour
     void DestroyShip()
     {
         //instantiate explosion
+        hud = FindObjectOfType<HUD>();
+        hud.StopTimeDisplay();
         Destroy(this.gameObject);
         //reset game
     }

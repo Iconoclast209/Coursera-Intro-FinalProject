@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    [SerializeField]
+    GameObject asteroidPrefabSmall;
+    [SerializeField]
+    int healthRemaining = 2;
     float colliderRadius;
 
     private void Start()
@@ -11,36 +15,35 @@ public class Asteroid : MonoBehaviour
         colliderRadius = GetComponent<CircleCollider2D>().radius;
     }
 
-    /*
-    private void OnBecameInvisible()
+
+
+    public void DamageAsteroid()
     {
-        //Find current position
-        Vector2 newPosition = transform.position;
-
-        //Determine what edge of the screen the asteroid has exited
-        if ((newPosition.x + colliderRadius) > ScreenUtils.ScreenRight)
+        healthRemaining--;
+        if (healthRemaining == 1)
         {
-            newPosition.x *= -1;
-        }
-        else if ((newPosition.x - colliderRadius) < ScreenUtils.ScreenLeft)
-        {
-            newPosition.x *= -1;
+            SpawnTwoSmallerAsteroids();
         }
 
-        if ((newPosition.y - colliderRadius) < ScreenUtils.ScreenBottom)
-        {
-            newPosition.y *= -1;
-        }
-        else if ((newPosition.y + colliderRadius) > ScreenUtils.ScreenTop)
-        {
-            newPosition.y *= -1;
-        }
+        Destroy(this.gameObject);
 
-        //Adjust the asteroids's position to the opposite side of the screen
-        transform.position = newPosition;
+    }
 
-    }*/
+    void SpawnTwoSmallerAsteroids()
+    {
+        //Spawn two smaller asteroids at roughly the same position as the larger asteroid
+        float xCoordinate = transform.position.x;
+        float yCoordinate = transform.position.y;
 
+        Vector3 spawnPosition = new Vector3(xCoordinate, yCoordinate, 0f);
+        GameObject newAsteroid = Instantiate(asteroidPrefabSmall, spawnPosition, Quaternion.identity);
+        //Offset the second asteroid slightly
+        xCoordinate += 0.1f;
+        yCoordinate += 0.1f;
+        spawnPosition = new Vector3(xCoordinate, yCoordinate, 0f);
+        GameObject newAsteroid2 = Instantiate(asteroidPrefabSmall, spawnPosition, Quaternion.identity);
+        //Apply force so that the smaller asteroids continue to move in roughly the same direction as the larger asteroid.
 
+    }
 
 }
